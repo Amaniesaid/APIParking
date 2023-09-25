@@ -120,7 +120,7 @@ public class ParkingTest {
         Parking parking = new Parking(0);
         parking.ajoutVehicule("abc-de");
         parking.ajoutVehicule("12-dk");
-        assertEquals(2, parking.VehiculesStationnes().size(),
+        assertEquals(2, parking.GetVehiculesStationnes().size(),
                 "Normalement 2 véhicules doivent être stationnés");
 
     }
@@ -129,7 +129,7 @@ public class ParkingTest {
 
         Parking parking = new Parking(0);
 
-        assertEquals(0, parking.VehiculesStationnes().size(),
+        assertEquals(0, parking.GetVehiculesStationnes().size(),
                 "Normalement 0 véhicules doivent être stationnés");
 
     }
@@ -138,7 +138,7 @@ public class ParkingTest {
 
         Parking parking = new Parking(0);
 
-        assertEquals(0, parking.VehiculesAutorises().size(),
+        assertEquals(0, parking.GetVehiculesAutorises().size(),
                 "Normalement 0 véhicules doivent être stationnés");
 
     }
@@ -147,7 +147,7 @@ public class ParkingTest {
 
         Parking parking = new Parking(0);
         parking.ajoutVehicule("ABC-234");
-        assertEquals(1, parking.VehiculesAutorises().size(),
+        assertEquals(1, parking.GetVehiculesAutorises().size(),
                 "Normalement 0 véhicules doivent être stationnés");
 
     }

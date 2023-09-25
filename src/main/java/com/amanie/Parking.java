@@ -66,12 +66,12 @@ public class Parking {
     }
 
     // Liste véhicule stationner
-    public ArrayList<String> VehiculesStationnes() {
+    public ArrayList<String> GetVehiculesStationnes() {
         return this.vehiculesStationnes;
     }
 
     // la liste des véhicules autorisés
-    public ArrayList<String> VehiculesAutorises() {
+    public ArrayList<String> GetVehiculesAutorises() {
         return this.vehiculesAutorises;
     }
 
