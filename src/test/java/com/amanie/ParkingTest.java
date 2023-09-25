@@ -39,7 +39,6 @@ public class ParkingTest {
 
         Parking parking = new Parking(1);
         parking.ajoutVehicule("AB-4C");
-
         // Assert verification que tout s'est passé comme prévu
         assertEquals(true, parking.entree("AB-4C"),
                 "Entree pas possible alors que tout est ok");
@@ -93,6 +92,17 @@ public class ParkingTest {
     }
 
     @Test
+    public void capaciteSupVehiculeStationnes_remplissage_remplit() {
+
+        Parking parking = new Parking(2);
+
+        // Assert verification que tout s'est passé comme prévu
+        assertEquals(false, parking.remplit(),
+                "Sortie possible alors que le vehicule n'est pas stationné ");
+
+    }
+
+    @Test
     public void capaciteSuperieurVehiculesStationnes_remplissage_nonRemplit() {
 
         Parking parking = new Parking(2);
@@ -137,11 +147,22 @@ public class ParkingTest {
     }
 
     @Test
-    public void zeroVehiculesStationnes_listeVehiculesStationnes_listeDeTailleZero() {
+    public void zeroVehiculesStationnes_listeVehiculesStationnes_listeDeTailleZero() { // retest taille un
 
         Parking parking = new Parking(0);
 
         assertEquals(0, parking.GetVehiculesStationnes().size(),
+                "Normalement 0 véhicules doivent être stationnés");
+
+    }
+
+    @Test
+    public void unVehiculesStationnes_listeVehiculesStationnes_listeDeTailleUn() {
+
+        Parking parking = new Parking(1);
+        parking.ajoutVehicule("ABC-234");
+        parking.entree("ABC-234");
+        assertEquals(1, parking.GetVehiculesStationnes().size(),
                 "Normalement 0 véhicules doivent être stationnés");
 
     }
