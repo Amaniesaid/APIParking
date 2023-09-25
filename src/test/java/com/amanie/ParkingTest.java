@@ -23,16 +23,18 @@ public class ParkingTest {
                 "L'immatriculation n'est pas correct");
     }
 
+    @Test
     public void vehiculeDansLaListe_ajouterLeMemeVehicule_devraitNePasEtreAjoute() {
 
         Parking parking = new Parking(0);
-        // parking.ajoutVehicule("AB-3C");
+        parking.ajoutVehicule("AB-4C");
         parking.ajoutVehicule("AB-4C");
         // Assert verification que tout s'est passé comme prévu
-        assertEquals(2, parking.getVehiculesAutorises().size(),
+        assertEquals(1, parking.getVehiculesAutorises().size(),
                 "Insertion d'un doublon non possible revoir son code");
     }
 
+    @Test
     public void vehiculeDansLaListe_entreeVehicule_devraitEntree() {
 
         Parking parking = new Parking(1);
@@ -46,11 +48,10 @@ public class ParkingTest {
         // "Entree possible alors que capacité = 0 revoir son code"
     }
 
+    @Test
     public void vehiculeDansLaListe_entreeVehicule_devraitPasEntree() {
 
         Parking parking = new Parking(1);
-        // Parking parking = new Parking(0);
-        parking.ajoutVehicule("AB-4C");
 
         // Assert verification que tout s'est passé comme prévu
         assertEquals(false, parking.entree("AB-4C"),
@@ -58,16 +59,18 @@ public class ParkingTest {
         // "Entree possible alors que capacité = 0 revoir son code"
     }
 
+    @Test
     public void vehiculeDansLaListe_sortieVehicule_devraitSortir() {
 
         Parking parking = new Parking(1);
         parking.ajoutVehicule("AB-4C");
-
+        parking.entree("AB-4C");
         // Assert verification que tout s'est passé comme prévu
         assertEquals(true, parking.sortie("AB-4C"),
                 "Sortie pas possible alors que tout est ok");
     }
 
+    @Test
     public void vehiculePasDansLaListe_sortieVehicule_devraitPasSortir() {
 
         Parking parking = new Parking(0);
@@ -78,6 +81,7 @@ public class ParkingTest {
 
     }
 
+    @Test
     public void capaciteEgaleVehiculeStationnes_remplissage_remplit() {
 
         Parking parking = new Parking(0);
@@ -88,6 +92,7 @@ public class ParkingTest {
 
     }
 
+    @Test
     public void capaciteSuperieurVehiculesStationnes_remplissage_nonRemplit() {
 
         Parking parking = new Parking(2);
@@ -98,6 +103,7 @@ public class ParkingTest {
 
     }
 
+    @Test
     public void aucunVehiculesStationnes_nbVehicules_zero() {
 
         Parking parking = new Parking(0);
@@ -106,25 +112,31 @@ public class ParkingTest {
 
     }
 
+    @Test
     public void aucunVehiculesStationnes_nbVehicules_un() {
 
-        Parking parking = new Parking(0);
+        Parking parking = new Parking(1);
         parking.ajoutVehicule("abc-de");
+        parking.entree("abc-de");
         assertEquals(1, parking.nbVehiculesStationnes(),
                 "Normalement 1 vehicule or ca retourne un autre nombre");
 
     }
 
+    @Test
     public void deuxVehiculesStationnes_listeVehiculesStationnes_listeDeTailleDeux() {
 
-        Parking parking = new Parking(0);
+        Parking parking = new Parking(2);
         parking.ajoutVehicule("abc-de");
         parking.ajoutVehicule("12-dk");
+        parking.entree("abc-de");
+        parking.entree("12-dk");
         assertEquals(2, parking.GetVehiculesStationnes().size(),
                 "Normalement 2 véhicules doivent être stationnés");
 
     }
 
+    @Test
     public void zeroVehiculesStationnes_listeVehiculesStationnes_listeDeTailleZero() {
 
         Parking parking = new Parking(0);
@@ -134,6 +146,7 @@ public class ParkingTest {
 
     }
 
+    @Test
     public void zeroVehiculeAutorises_listeVehiculesAutorises_listeDeTailleZero() {
 
         Parking parking = new Parking(0);
@@ -143,6 +156,7 @@ public class ParkingTest {
 
     }
 
+    @Test
     public void unVehiculeAutorises_listeVehiculesAutorises_listeDeTailleUn() {
 
         Parking parking = new Parking(0);
@@ -152,6 +166,7 @@ public class ParkingTest {
 
     }
 
+    @Test
     public void unVehiculeStationneCapaciteUn_tauxRemplissage_cent() {
         Parking parking = new Parking(1);
         parking.ajoutVehicule("ABC-234");
@@ -160,6 +175,7 @@ public class ParkingTest {
                 "Normalement 100% taux remplissage");
     }
 
+    @Test
     public void zeroVehiculeStationneCapaciteDeux_tauxRemplissage_zero() {
         Parking parking = new Parking(2);
 
@@ -167,12 +183,12 @@ public class ParkingTest {
                 "Normalement 0% taux remplissage");
     }
 
-    public void zeroVehiculeStationneCapaciteUn_tauxRemplissage_zero() {
+    @Test
+    public void unVehiculeStationneCapaciteDeux_tauxRemplissage_cinquante() {
         Parking parking = new Parking(2);
-        parking.ajoutVehicule("ABC-234");
-        parking.entree("ABC-234");
-        assertEquals(50, parking.tauxRemplissage(),
+        parking.ajoutVehicule("aba");
+        parking.entree("aba");
+        assertEquals(50.0, parking.tauxRemplissage(),
                 "Normalement 50% taux remplissage");
     }
-
 }

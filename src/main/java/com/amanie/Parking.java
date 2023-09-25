@@ -77,7 +77,7 @@ public class Parking {
 
     // taux remplissage parking
     public double tauxRemplissage() {
-        double tauxRemplissage = (this.vehiculesStationnes.size() / this.capacite) * 100;
+        double tauxRemplissage = (double) this.vehiculesStationnes.size() / this.capacite * 100;
         return tauxRemplissage;
     }
 
